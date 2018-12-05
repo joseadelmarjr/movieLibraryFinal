@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_key">e4f84def55041ae2e243efe2a0bc56c9</string>
+    <string name="url_genres">https://api.themoviedb.org/3/genre/movie/list?api_key=</string>
+</resources>
