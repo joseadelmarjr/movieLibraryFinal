@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">movieLibrary</string>
     <string name="InitialSelect">select your movie genre</string>
+    <string name="secondSelect">select your movie</string>
     <string name="language">en-US</string>
 
 </resources>

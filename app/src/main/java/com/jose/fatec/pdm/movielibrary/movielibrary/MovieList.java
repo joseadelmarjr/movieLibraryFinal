@@ -1,13 +1,13 @@
 package com.jose.fatec.pdm.movielibrary.movielibrary;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.opengl.GLES31Ext;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,48 +21,36 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    private ListView genreListView;
-    private List<genre> genresList;
-    private List<String> testList;
-    private ArrayAdapter genresAdapter;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        genreListView = findViewById(R.id.lista);
-        genresList = new ArrayList<genre>();
-        testList = new ArrayList<>();
-        genresAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,  testList);
-        genreListView.setAdapter(genresAdapter);
-        //Toast.makeText(MainActivity.this, , Toast.LENGTH_SHORT).show();
+public class MovieList extends Activity {
 
-        String urlGenres = getString(R.string.url_genres);
-        String apiKey = getString(R.string.api_key);
-        String language = getString(R.string.language);
-        String urlMontada = urlGenres + apiKey + "&language=" + language;
-        new getGenres().execute(urlMontada);
-        genreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent it;
-                it = new Intent(MainActivity.this, MovieList.class);
-                genre choiceGenre = new genre();
-                choiceGenre = genresList.get(position);
-                it.putExtra("genre",choiceGenre);
-                startActivity(it);
-            }
-        });
+    private List<String> testList;
+    private ListView MovieListView;
+    private ArrayAdapter moviesAdapter;
+
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.movie_list);
+        //Pega a intent de outra activity
+        Intent it = getIntent();
+
+        //Recuperei a string da outra activity
+        genre genre = (com.jose.fatec.pdm.movielibrary.movielibrary.genre) getIntent().getSerializableExtra("genre");
+        testList = new ArrayList<>();
+        MovieListView = findViewById(R.id.movielist);
+        moviesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,  testList);
+        MovieListView.setAdapter(moviesAdapter);
+        String sql = "https://api.themoviedb.org/3/discover/movie?api_key=e4f84def55041ae2e243efe2a0bc56c9&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=";
+        sql = sql + String.valueOf(genre.getId());
+        new getGenres().execute(sql);
 
     }
-    private class getGenres extends AsyncTask <String,Void,String>{
+    private class getGenres extends AsyncTask<String,Void,String> {
 
 
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -96,18 +84,18 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(MainActivity.this, dados, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject json = new JSONObject(jsonS);
-                JSONArray list = json.getJSONArray("genres");
+                JSONArray list = json.getJSONArray("results");
 
                 for (int i = 0; i < list.length(); i++){
-                    JSONObject genero = list.getJSONObject(i);
-                    int     id       = genero.getInt("id");
-                    String descricao = genero.getString("name");
+                    JSONObject filmes = list.getJSONObject(i);
+                    int     id       = filmes.getInt("id");
+                    String descricao = filmes.getString("title");
                     //Toast.makeText(MainActivity.this, descricao, Toast.LENGTH_SHORT).show();
                     genre novo = new genre();
                     novo.setId(id);
                     novo.setDescription(descricao);
+                 //   movieList.add(novo);
                     testList.add(descricao);
-                    genresList.add(novo);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -115,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
 
 
 }
