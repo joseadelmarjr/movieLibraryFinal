@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         genresList = new ArrayList<genre>();
         testList = new ArrayList<>();
         genresAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,  testList);
-        genreListView.setAdapter(genresAdapter);
+
         //Toast.makeText(MainActivity.this, , Toast.LENGTH_SHORT).show();
 
         String urlGenres = getString(R.string.url_genres);
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     testList.add(descricao);
                     genresList.add(novo);
                 }
+                genreListView.setAdapter(genresAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

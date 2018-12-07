@@ -2,4 +2,7 @@
 <resources>
     <string name="api_key">e4f84def55041ae2e243efe2a0bc56c9</string>
     <string name="url_genres">https://api.themoviedb.org/3/genre/movie/list?api_key=</string>
+    <string name="url_movie_list">https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&amp;with_genres=</string>
+    <string name="url_image">http://image.tmdb.org/t/p/w300</string>
+
 </resources>
