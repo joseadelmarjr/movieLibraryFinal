@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Biblioteca de Filmes</string>
+    <string name="InitialSelect">Selecione seu gênero de filme</string>
+    <string name="secondSelect">Selecione seu filme</string>
+    <string name="yourMovie">Filme selecionado</string>
+    <string name="language">pt-BR</string>
+
+</resources>

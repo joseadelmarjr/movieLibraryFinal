@@ -18,6 +18,12 @@
         android:id="@+id/movielist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_row="1"/>
+        android:layout_row="1"
+        android:paddingBottom="30sp"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay"
+
+
+        />
 
 </GridLayout>

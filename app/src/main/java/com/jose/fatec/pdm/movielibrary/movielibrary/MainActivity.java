@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         genreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+
                 Intent it;
                 it = new Intent(MainActivity.this, MovieList.class);
                 genre choiceGenre = new genre();

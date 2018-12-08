@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">" 映画"</string>
+    <string name="secondSelect">あなたの映画を選択してください</string>
+    <string name="yourMovie">選択した映画</string>
+    <string name="InitialSelect">あなたの映画のジャンルを選択してください</string>
+    <string name="language">ja-JP</string>
+</resources>

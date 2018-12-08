@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Filme</string>
+    <string name="secondSelect">Wählen Sie Ihren Film aus</string>
+    <string name="yourMovie">Ausgewählter Film</string>
+    <string name="InitialSelect">Wählen Sie Ihr Filmgenre aus</string>
+    <string name="language">de-GE</string>
+</resources>

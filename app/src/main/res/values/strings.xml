@@ -3,6 +3,5 @@
     <string name="InitialSelect">select your movie genre</string>
     <string name="secondSelect">select your movie</string>
     <string name="yourMovie">this is the selected movie</string>
-    <string name="language">pt-BR</string>
-
+    <string name="language">en-US</string>
 </resources>
